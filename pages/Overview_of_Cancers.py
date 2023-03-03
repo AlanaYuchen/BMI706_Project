@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Mar  3 09:47:14 2023
-
-@author: chenghui
-"""
 
 import pandas as pd
 import numpy as np
 import altair as alt
 import streamlit as st
+
+# set up page sidebar
+st.set_page_config(page_title="Overview of All Cancers", page_icon="📈")
+st.sidebar.header("Overview of All Cancers")
 
 @st.cache_data
 def load_data():
@@ -61,7 +60,7 @@ st.write("### Explore Trends in Family History")
 # add selector 
 select_cancer = alt.selection_single(encodings=["x"])
 
-num_relatives_cancer_base = alt.Chart(Q1).properties(height = 300)
+num_relatives_cancer_base = alt.Chart(Q1).properties(height = 200)
 num_relatives_cancer = num_relatives_cancer_base.mark_bar().encode(
   x = "tissue_or_organ_of_origin:N", 
   y = alt.Y("relative_with_cancer_history", aggregate = "sum", scale = alt.Scale(type = "log")), 
@@ -189,31 +188,6 @@ death_age_distribution = alt.Chart(Q4).mark_boxplot(opacity = 0.8).encode(
 
 v4_both = diagnosis_age_distribution | death_age_distribution
 st.altair_chart(v4_both, use_container_width=True)
-
-
-# ============================================= Visualization 6 =============================================
-#subset one cancer type
-Q6 = full_df[full_df["tissue_or_organ_of_origin"] == "Lung, NOS"]
-Q6 = full_df[['stage', 'ethnicity', 'gender', 'age_at_diagnosis']]
-Q6['age_at_diagnosis_year'] = pd.to_numeric(Q6['age_at_diagnosis'])/365
-Q6 = Q6.dropna()
-
-# bar chart 
-cancerstage_gender = alt.Chart(Q6).mark_bar().encode(
-  x = alt.X("stage:O", sort='-y'), 
-  y = alt.Y(aggregate = "count"),
-  color = 'gender', 
-  tooltip = ["stage","gender", "count()"]
-)
-cancerstage_gender
-
-diagnosisage_gender = alt.Chart(Q6).mark_bar(opacity = 0.8).encode(
-  x = alt.X("age_at_diagnosis_year:Q"), 
-  y = alt.Y(aggregate = "count"),
-  color = 'gender', 
-  tooltip = ["age_at_diagnosis_year","gender", "count()"]
-)
-cancerstage_gender & diagnosisage_gender
 
 
 
