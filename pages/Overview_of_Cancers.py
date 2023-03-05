@@ -108,20 +108,19 @@ Q2 = Q2.dropna()
 
 # line chart
 num_diagnosis_cancer_year = alt.Chart(Q2).mark_line(point=alt.OverlayMarkDef()).encode(
-  x = "year_of_diagnosis:O", 
-  y = alt.Y(aggregate = "count"), 
-  color = "tissue_or_organ_of_origin:N",
+  x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'), 
+  y = alt.Y(aggregate = "count",title='Count of records'), 
+  color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
   tooltip = [alt.Tooltip("tissue_or_organ_of_origin",title='Tissue or organ of origin'),alt.Tooltip("year_of_diagnosis:O",title='Year of diagnosis'), alt.Tooltip("count(year_of_diagnosis)",title='Count')]
 ).properties(width = 800, height = 400)
 st.altair_chart(num_diagnosis_cancer_year, use_container_width=True)
 
-# Part2
 # bar chart 
 num_diagnosis_cancer = alt.Chart(Q2).mark_bar().encode(
-  x = alt.X("tissue_or_organ_of_origin:N", sort='-y'), 
-  y = alt.Y(aggregate = "count"),
-  color = 'gender', 
-  tooltip = ["tissue_or_organ_of_origin","gender", "count(tissue_or_organ_of_origin)"]
+  x = alt.X("tissue_or_organ_of_origin:N", sort='-y',title='Site of canceer origin'), 
+  y = alt.Y(aggregate = "count",title='Count of records'),
+  color = alt.Color('gender',title='Gender'), 
+  tooltip = [alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count(tissue_or_organ_of_origin)",title='Count of records')]
 ).properties(width = 800, height = 400)
 st.altair_chart(num_diagnosis_cancer, use_container_width=True)
 
