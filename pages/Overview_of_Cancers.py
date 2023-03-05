@@ -73,10 +73,10 @@ num_relatives_cancer = num_relatives_cancer_base.mark_bar().encode(
 
 # === bar chart 2 === 
 num_relatives_cancer2 = num_relatives_cancer_base.mark_bar().encode(
-    x = alt.X("relationship_primary_diagnosis:N", sort = '-y',title='Relationship with the primary diagnosis patient'),
+    x = alt.X("relationship_primary_diagnosis:N", sort = '-y',title='Relationship with the primary diagnosed patient'),
     y = alt.Y(aggregate = "count", scale = alt.Scale(type = "log"),title='Count of reecords'),
-    color = alt.Color("relationship_type"),
-    tooltip = ["relationship_primary_diagnosis", "relationship_type","count(relationship_type)"]
+    color = alt.Color("relationship_type",title='Relationship type'),
+    tooltip = [alt.Tooltip("relationship_primary_diagnosis",title='Relationship with the primary diagnosed patient'), alt.Tooltip("relationship_type",title='Relationship type'),alt.Tooltip("count(relationship_type)",title='Count of reecords')]
 ).transform_filter(
     select_cancer
 )
