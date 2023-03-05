@@ -62,7 +62,7 @@ select_cancer = alt.selection_single(encodings=["x"])
 
 num_relatives_cancer_base = alt.Chart(Q1).properties(height = 200)
 num_relatives_cancer = num_relatives_cancer_base.mark_bar().encode(
-  x = "tissue_or_organ_of_origin:N", 
+  x = alt.X("tissue_or_organ_of_origin:N",title='Site of Cancer Origin'), 
   y = alt.Y("relative_with_cancer_history", aggregate = "sum", scale = alt.Scale(type = "log")), 
   color = "tissue_or_organ_of_origin:N",
   tooltip = ["sum(relative_with_cancer_history)","tissue_or_organ_of_origin"],
