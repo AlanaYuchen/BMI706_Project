@@ -137,18 +137,18 @@ single = alt.selection_single(encodings=["color"])
 # line chart
 base = alt.Chart(Q3)
 num_diagnosis_age_cancer = base.mark_line(point=alt.OverlayMarkDef()).encode(
-  x = "year_of_diagnosis:O", 
-  y = alt.Y("age_at_diagnosis_year:Q", aggregate = "mean"), 
-  color = "tissue_or_organ_of_origin:N",
-  tooltip = ["year_of_diagnosis","mean(age_at_diagnosis_year)","tissue_or_organ_of_origin"],
+  x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'), 
+  y = alt.Y("age_at_diagnosis_year:Q", aggregate = "mean",title='Age at diagnosis'), 
+  color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
+  tooltip = [alt.Tooltip("year_of_diagnosis",title='Year of diagnosis'),alt.Tooltip("mean(age_at_diagnosis_year)",title='Age at diagnosis'),alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin')],
   opacity=alt.condition(single, alt.value(1), alt.value(0.2))
 ).add_selection(
     single
 )
 
 num_diagnosis_age_cancer2 = base.mark_boxplot().encode(
-    x = "year_of_diagnosis:O",
-    y = "age_at_diagnosis_year:Q"
+    x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'),
+    y = alt.Y("age_at_diagnosis_year:Q",title='Age at diagnosis')
 ).transform_filter(
     single
 )
