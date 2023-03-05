@@ -165,24 +165,24 @@ Q4 = Q4.dropna()
 
 # line chart
 diagnosis_death_age = alt.Chart(Q4).mark_circle(size=60, opacity = 0.7).encode(
-  y = alt.Y("age_of_death:Q", aggregate = "mean"), 
-  x = alt.X("age_at_diagnosis_year:Q", aggregate = "mean"), 
-  color = "tissue_or_organ_of_origin:N",
-  tooltip = ["mean(age_of_death)","mean(age_at_diagnosis_year)","tissue_or_organ_of_origin"]
+  y = alt.Y("age_of_death:Q", aggregate = "mean",title='Age of death'), 
+  x = alt.X("age_at_diagnosis_year:Q", aggregate = "mean",title='Age at diagnosis'), 
+  color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
+  tooltip = [alt.Tooltip("mean(age_of_death)",title='Mean age of death'),alt.Tooltip("mean(age_at_diagnosis_year)",title='Mean age at diagnosis'),alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin')]
 )
 
 st.altair_chart(diagnosis_death_age, use_container_width=True)
 
 ## Part3
 diagnosis_age_distribution = alt.Chart(Q4).mark_boxplot(opacity = 0.8).encode(
-    x = "tissue_or_organ_of_origin:N",
-    y = "age_at_diagnosis_year:Q",
-    color = "tissue_or_organ_of_origin:N"
+    x = alt.X("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
+    y = alt.Y("age_at_diagnosis_year:Q",title='Age at diagnosis'),
+    color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin')
 )
 death_age_distribution = alt.Chart(Q4).mark_boxplot(opacity = 0.8).encode(
-    x = "tissue_or_organ_of_origin:N",
-    y = "age_of_death:Q",
-    color = "tissue_or_organ_of_origin:N"
+    x = alt.X("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
+    y = alt.Y("age_of_death:Q",title='Age of death'),
+    color = alt.Color("tissue_or_organ_of_origin:N",title='Sitee of cancer origin')
 )
 
 v4_both = diagnosis_age_distribution | death_age_distribution
