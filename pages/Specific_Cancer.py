@@ -104,7 +104,7 @@ cancerstage_gender = base.mark_bar().encode(
 diagnosisage_gender = base.mark_bar(opacity = 0.8).encode(
   x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360),title='Age group'), 
   y = alt.Y(aggregate = "count",title='Count'),
-  color = alt.Color('gender',title='Color'), 
+  color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['F','M'], range=["pink1", "SkyBlue1"]), 
   tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')]
 ).transform_filter(
     select_stage_gender
