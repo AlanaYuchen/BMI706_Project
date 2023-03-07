@@ -112,11 +112,15 @@ num_diagnosis_age_cancer2 = base.mark_boxplot().encode(
     y = alt.Y("age_at_diagnosis_year:Q",title='Age at diagnosis')
 ).transform_filter(
     single
+).properties(
+    title="The distribution of age at diagnosis across years in selected cancer",
 )
 num_diagnosis_age_cancer & num_diagnosis_age_cancer2
 
+
 # ============================================= Visualization 4 =============================================
 st.write("### Explore Associations in Age of Diagnosis with Age of Death")
+st.write('Click on a specific type of cancer and view the distribution of age at diagnosis for individual patients!')
 ## Part 1
 # scatter plot between average age of death and diagnosis for each cancer type
 Q4 = subset[['year_of_diagnosis','age_at_diagnosis','tissue_or_organ_of_origin','year_of_death', 'year_of_birth']]
