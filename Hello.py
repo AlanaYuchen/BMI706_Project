@@ -25,15 +25,14 @@ st.markdown(
     """     
    We offer an application that overviews clinical and family history data spanning all sequenced samples in TCGA!   
    We hope to help empower cancer researchers in interacting with the database more effectively 
-   as they: 
-       - 1. survey types of research questions that may be answered using the available data i
-   n TCGA or 
-       - 2. evaluate whether TCGA would be a suitable data source for predefined research questions 
+   as they:  
+       1. survey types of research questions that may be answered using the available data in TCGA
+       2. evaluate whether TCGA would be a suitable data source for predefined research questions 
    they have in mind.   
      
    We offer two view of the data
-      - 1. Explore and compare the overall information across multiple cancer types.
-      - 2. Zoom in to explore the data composition of a specific cancer type.
+      1. Explore and compare the overall information across multiple cancer types.
+      2. Zoom in to explore the data composition of a specific cancer type.
       
     The data we used is publicly available at GDC data portal (https://portal.gdc.cancer.gov/repository).
 
