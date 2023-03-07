@@ -109,7 +109,8 @@ num_diagnosis_age_cancer = base.mark_line(point=alt.OverlayMarkDef()).encode(
 
 num_diagnosis_age_cancer2 = base.mark_boxplot().encode(
     x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'),
-    y = alt.Y("age_at_diagnosis_year:Q",title='Age at diagnosis')
+    y = alt.Y("age_at_diagnosis_year:Q",title='Age at diagnosis'),
+    color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin')
 ).transform_filter(
     single
 ).properties(
