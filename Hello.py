@@ -26,8 +26,8 @@ st.markdown(
    We offer an application that overviews clinical and family history data spanning all sequenced samples in TCGA!   
    We hope to help empower cancer researchers in interacting with the database more effectively 
    as they
-       1. survey types of research questions that may be answered using the available data in TCGA
-       2. evaluate whether TCGA would be a suitable data source for predefined research questions 
+       1. Survey types of research questions that may be answered using the available data in TCGA.
+       2. Evaluate whether TCGA would be a suitable data source for predefined research questions 
    they have in mind.   
      
    We offer two view of the data
