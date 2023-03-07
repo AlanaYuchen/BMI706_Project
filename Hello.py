@@ -19,17 +19,18 @@ st.markdown(
    """
    )
 
-st.markdown("###Here we come, the Illuminator Team!")  
+st.write("### Here we come, the Illuminator Team!")  
    
 st.markdown(
     """     
-   We offer an application that overviews clinical and family history data spanning all sequenced samples in TCGA!   
-   We hope to help empower cancer researchers in interacting with the database more effectively as they
+   **We offer an application that overviews clinical and family history data spanning all sequenced samples in TCGA!**  
+     
+   **We hope to help empower cancer researchers in interacting with the database more effectively as they**
       - Survey types of research questions that may be answered using the available data in TCGA.  
       - Evaluate whether TCGA would be a suitable data source for predefined research questions 
    they have in mind.   
      
-   We offer two view of the data
+   **We offer two view of the data**
       - Explore and compare the overall information across multiple cancer types.
       - Zoom in to explore the data composition of a specific cancer type.
       
