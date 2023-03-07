@@ -39,9 +39,10 @@ st.markdown(
 """
 )
 
-st.write("### Do not hesitate to contact the team if you have any questions or comments!")  
+ 
 st.markdown(
-    """     
+    """   
+    **Do not hesitate to contact the team if you have any questions or comments!**
     **Email us at XXXX@hms.harvard.edu!**
 """
 )
