@@ -38,3 +38,10 @@ st.markdown(
 
 """
 )
+
+st.write("### Do not hesitate to contact the team if you have any questions or comments!")  
+st.markdown(
+    """     
+    **Email us at XXXX@hms.harvard.edu!**
+"""
+)
