@@ -43,47 +43,6 @@ def load_data():
 
 full_df = load_data()
 
-# ============================================= Visualization 1 =============================================
-## Part 1 and 2
-alt.data_transformers.enable('default', max_rows=None)
-st.write("# Overview of Cancer Trends")
-
-# select columns of interest and drop NAs
-Q1 = full_df[['tissue_or_organ_of_origin', 'gender', 'ethnicity', 
-              'relative_with_cancer_history', 'relationship_type', 
-              'relationship_primary_diagnosis', 'relationship_gender']]
-Q1["relative_with_cancer_history"] = np.where(Q1["relative_with_cancer_history"] == "yes", 1, 0)
-Q1 = Q1.dropna() 
-
-# === bar chart 1: number of cases per cancer type with relatives who also have a history of cancer ===
-st.write("### Explore Trends in Family History")
-# add selector 
-select_cancer = alt.selection_single(encodings=["x"])
-
-num_relatives_cancer_base = alt.Chart(Q1).properties(height = 200)
-num_relatives_cancer = num_relatives_cancer_base.mark_bar().encode(
-  x = alt.X("tissue_or_organ_of_origin:N",title='Site of cancer origin'), 
-  y = alt.Y("relative_with_cancer_history", aggregate = "sum", scale = alt.Scale(type = "log"),title='Number of relatives with cancer history'), 
-  color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
-  tooltip = [alt.Tooltip("sum(relative_with_cancer_history)",title='Number of relatives with cancer history'),alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin')],
-  opacity=alt.condition(select_cancer, alt.value(1), alt.value(0.2))
-).add_selection(
-    select_cancer
-)
-
-# === bar chart 2 === 
-num_relatives_cancer2 = num_relatives_cancer_base.mark_bar().encode(
-    x = alt.X("relationship_primary_diagnosis:N", sort = '-y',title='Relationship with the primary diagnosed patient'),
-    y = alt.Y(aggregate = "count", scale = alt.Scale(type = "log"),title='Count of reecords'),
-    color = alt.Color("relationship_type",title='Relationship type'),
-    tooltip = [alt.Tooltip("relationship_primary_diagnosis",title='Relationship with the primary diagnosed patient'), alt.Tooltip("relationship_type",title='Relationship type'),alt.Tooltip("count(relationship_type)",title='Count of reecords')]
-).transform_filter(
-    select_cancer
-)
-
-both_charts = num_relatives_cancer | num_relatives_cancer2
-both_charts = both_charts.resolve_scale(color='independent')
-st.altair_chart(both_charts, use_container_width=True)
 
 # ============================================= Visualization 2 =============================================
 st.write("### Explore Trends in the Number of Diagnosis Across Years")
@@ -189,4 +148,45 @@ v4_both = diagnosis_age_distribution | death_age_distribution
 st.altair_chart(v4_both, use_container_width=True)
 
 
+# ============================================= Visualization 1 =============================================
+## Part 1 and 2
+alt.data_transformers.enable('default', max_rows=None)
+st.write("# Overview of Cancer Trends")
+
+# select columns of interest and drop NAs
+Q1 = full_df[['tissue_or_organ_of_origin', 'gender', 'ethnicity', 
+              'relative_with_cancer_history', 'relationship_type', 
+              'relationship_primary_diagnosis', 'relationship_gender']]
+Q1["relative_with_cancer_history"] = np.where(Q1["relative_with_cancer_history"] == "yes", 1, 0)
+Q1 = Q1.dropna() 
+
+# === bar chart 1: number of cases per cancer type with relatives who also have a history of cancer ===
+st.write("### Explore Trends in Family History")
+# add selector 
+select_cancer = alt.selection_single(encodings=["x"])
+
+num_relatives_cancer_base = alt.Chart(Q1).properties(height = 200)
+num_relatives_cancer = num_relatives_cancer_base.mark_bar().encode(
+  x = alt.X("tissue_or_organ_of_origin:N",title='Site of cancer origin'), 
+  y = alt.Y("relative_with_cancer_history", aggregate = "sum", scale = alt.Scale(type = "log"),title='Number of relatives with cancer history'), 
+  color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
+  tooltip = [alt.Tooltip("sum(relative_with_cancer_history)",title='Number of relatives with cancer history'),alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin')],
+  opacity=alt.condition(select_cancer, alt.value(1), alt.value(0.2))
+).add_selection(
+    select_cancer
+)
+
+# === bar chart 2 === 
+num_relatives_cancer2 = num_relatives_cancer_base.mark_bar().encode(
+    x = alt.X("relationship_primary_diagnosis:N", sort = '-y',title='Relationship with the primary diagnosed patient'),
+    y = alt.Y(aggregate = "count", scale = alt.Scale(type = "log"),title='Count of reecords'),
+    color = alt.Color("relationship_type",title='Relationship type'),
+    tooltip = [alt.Tooltip("relationship_primary_diagnosis",title='Relationship with the primary diagnosed patient'), alt.Tooltip("relationship_type",title='Relationship type'),alt.Tooltip("count(relationship_type)",title='Count of reecords')]
+).transform_filter(
+    select_cancer
+)
+
+both_charts = num_relatives_cancer | num_relatives_cancer2
+both_charts = both_charts.resolve_scale(color='independent')
+st.altair_chart(both_charts, use_container_width=True)
 

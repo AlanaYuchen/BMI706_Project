@@ -94,7 +94,7 @@ base = alt.Chart(Q6).properties(width = 300, height = 200)
 cancerstage_gender = base.mark_bar().encode(
   x = alt.X("stage:O",title='Cancer Stage'), 
   y = alt.Y(aggregate = "count",title='Count'),
-  color = alt.Color('gender',title='Gender'), 
+  color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['F','M'], range=["pink1", "SkyBlue1"])), 
   tooltip = [alt.Tooltip("stage",title='Cancer stage'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')],
   opacity=alt.condition(select_stage_gender, alt.value(1), alt.value(0.2))
 ).add_selection(
