@@ -85,7 +85,7 @@ Q6['age_group'] = np.select(
 Q6 = Q6.dropna()
 
 # ========= gender =========
-st.write("### Explore Cancer Stage Across Ethnicities and Gender")
+st.write("### Explore Cancer Stage and Age of Diagnosis Across Gender")
 # add selector 
 select_stage_gender = alt.selection_single(encodings=["x"])
 
@@ -101,7 +101,7 @@ cancerstage_gender = base.mark_bar().encode(
     select_stage_gender
 )
 
-diagnosisage_gender = base.mark_bar(opacity = 0.8).encode(
+diagnosisage_gender = base.mark_bar().encode(
   x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360),title='Age group'), 
   y = alt.Y(aggregate = "count",title='Count'),
   color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['female','male','unknown'], range=["hotpink", "#1E90FF","grey"])), 
@@ -114,7 +114,7 @@ both_plots = cancerstage_gender | diagnosisage_gender
 st.altair_chart(both_plots, use_container_width=True)
 
 # ========= ethnicity =========
-st.write("### Explore Age of Diagnosis Across Ethnicities and Gender")
+st.write("### Explore Cancer Stage and Age of Diagnosis Across Ethnicities")
 # add selector 
 select_stage_ethnicity = alt.selection_single(encodings=["x"])
 

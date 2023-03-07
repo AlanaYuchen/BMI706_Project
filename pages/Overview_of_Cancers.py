@@ -44,6 +44,8 @@ def load_data():
 full_df = load_data()
 
 
+alt.data_transformers.enable('default', max_rows=None)
+st.write("# Overview of Cancer Trends")
 # ============================================= Visualization 2 =============================================
 st.write("### Explore Trends in the Number of Diagnosis Across Years")
 
@@ -150,8 +152,6 @@ st.altair_chart(v4_both, use_container_width=True)
 
 # ============================================= Visualization 1 =============================================
 ## Part 1 and 2
-alt.data_transformers.enable('default', max_rows=None)
-st.write("# Overview of Cancer Trends")
 
 # select columns of interest and drop NAs
 Q1 = full_df[['tissue_or_organ_of_origin', 'gender', 'ethnicity', 
