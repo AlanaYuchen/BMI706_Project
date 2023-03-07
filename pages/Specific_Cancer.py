@@ -92,20 +92,20 @@ select_stage_gender = alt.selection_single(encodings=["x"])
 # bar chart 
 base = alt.Chart(Q6).properties(width = 300, height = 200)
 cancerstage_gender = base.mark_bar().encode(
-  x = alt.X("stage:O"), 
-  y = alt.Y(aggregate = "count"),
-  color = 'gender', 
-  tooltip = ["stage","gender", "count()"],
+  x = alt.X("stage:O",title='Cancer Stage'), 
+  y = alt.Y(aggregate = "count",title='Count'),
+  color = alt.Color('gender',title='Gender'), 
+  tooltip = [alt.Tooltip("stage",title='Cancer stage'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')],
   opacity=alt.condition(select_stage_gender, alt.value(1), alt.value(0.2))
 ).add_selection(
     select_stage_gender
 )
 
 diagnosisage_gender = base.mark_bar(opacity = 0.8).encode(
-  x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360)), 
-  y = alt.Y(aggregate = "count"),
-  color = 'gender', 
-  tooltip = ["age_group","gender", "count()"]
+  x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360),title='Age group'), 
+  y = alt.Y(aggregate = "count",title='Count'),
+  color = alt.Color('gender',title='Color'), 
+  tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')]
 ).transform_filter(
     select_stage_gender
 )
@@ -120,20 +120,20 @@ select_stage_ethnicity = alt.selection_single(encodings=["x"])
 
 base = alt.Chart(Q6).properties(width = 300, height = 200)
 cancerstage_ethnicity = base.mark_bar().encode(
-  x = alt.X("stage:O"), 
-  y = alt.Y(aggregate = "count"),
-  color = 'ethnicity', 
-  tooltip = ["stage","ethnicity", "count()"],
+  x = alt.X("stage:O",title='Cancer stage'), 
+  y = alt.Y(aggregate = "count",title='Count'),
+  color = alt.Color('ethnicity',title='Ethnicity'), 
+  tooltip = [alt.Tooltip("stage",title='Cancer stage'),alt.Tooltip("ethnicity",title='Ethnicity'), alt.Tooltip("count()",title='Count')],
   opacity=alt.condition(select_stage_ethnicity, alt.value(1), alt.value(0.2))
 ).add_selection(
     select_stage_ethnicity
 )
 
 diagnosisage_ethnicity = base.mark_bar(opacity = 0.8).encode(
-  x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360)), 
-  y = alt.Y(aggregate = "count"),
-  color = 'ethnicity', 
-  tooltip = ["age_group","ethnicity", "count()"]
+  x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360),title='Age group'), 
+  y = alt.Y(aggregate = "count",title='Count'),
+  color = alt.Color('ethnicity',title='Ethnicity'), 
+  tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("ethnicity",title='Ethnicity'), alt.Tooltip("count()",title='Count')]
 ).transform_filter(
     select_stage_ethnicity
 )
