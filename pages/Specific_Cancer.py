@@ -116,7 +116,7 @@ cancerstage_gender = base.mark_bar().encode(
 #   title = "Number of diagnosis per age group colored by gender"
 # )
 diagnosisage_gender = base.mark_bar().encode(
-  x = alt.X("age_at_diagnosis:Q", axis=alt.Axis(labelAngle=360),title='Age group', bin = True), 
+  x = alt.X("age_at_diagnosis_year:Q", axis=alt.Axis(labelAngle=360),title='Age group', bin = alt.Bin(step=5)), 
   y = alt.Y(aggregate = "count",title='Count'),
   color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['female','male','unknown'], range=["hotpink", "#1E90FF","grey"])), 
   tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')]
