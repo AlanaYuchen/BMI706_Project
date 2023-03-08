@@ -43,22 +43,22 @@ def load_data():
 full_df = load_data()
 
 # record stages in full_df 
-full_df[full_df['stage'] == "Stage 1"] = "Stage I"
-full_df[full_df['stage'] == "Stage 2"] = "Stage II"
-full_df[full_df['stage'] == "Stage 3"] = "Stage III"
-full_df[full_df['stage'] == "Stage 4"] = "Stage IV"
+full_df.loc[full_df['stage'] == "Stage 1", "stage"] = "Stage I"
+full_df.loc[full_df['stage'] == "Stage 2", "stage"] = "Stage II"
+full_df.loc[full_df['stage'] == "Stage 3", "stage"] = "Stage III"
+full_df.loc[full_df['stage'] == "Stage 4", "stage"] = "Stage IV"
 
-full_df[full_df['stage'] == "I"] = "Stage I"
-full_df[full_df['stage'] == "II"] = "Stage II"
-full_df[full_df['stage'] == "III"] = "Stage III"
-full_df[full_df['stage'] == "IV"] = "Stage IV"
+full_df.loc[full_df['stage'] == "I", "stage"] = "Stage I"
+full_df.loc[full_df['stage'] == "II", "stage"] = "Stage II"
+full_df.loc[full_df['stage'] == "III", "stage"] = "Stage III"
+full_df.loc[full_df['stage'] == "IV", "stage"] = "Stage IV"
 
-full_df[full_df['stage'] == "Unknown"] = "Not Reported"
-full_df[full_df['stage'] == "Not ReportedNot Reported"] = "Not Reported"
+full_df.loc[full_df['stage'] == "Unknown", "stage"] = "Not Reported"
+full_df.loc[full_df['stage'] == "Not ReportedNot Reported", "stage"] = "Not Reported"
 
-full_df[full_df['stage'] == "Stage IIAStage IIA"] = "Stage IIA"
-full_df[full_df['stage'] == "Stage IIICStage IIIC"] = "Stage IIIC"
-full_df[full_df['stage'] == "Stage IIBStage IIB"] = "Stage IIB"
+full_df.loc[full_df['stage'] == "Stage IIAStage IIA", "stage"] = "Stage IIA"
+full_df.loc[full_df['stage'] == "Stage IIICStage IIIC", "stage"] = "Stage IIIC"
+full_df.loc[full_df['stage'] == "Stage IIBStage IIB", "stage"] = "Stage IIB"
 
 # full_df.loc[full_df['stage'].str.contains("Stage 1.*",regex=True).astype(bool), "stage"] = "Stage I"
 # full_df.loc[full_df['stage'].str.contains("Stage 2.*",regex=True).astype(bool),  "stage"] = "Stage II"
