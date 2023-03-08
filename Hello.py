@@ -10,7 +10,7 @@ st.write("# Welcome to TCGA Explorer! 👋")
 
 st.markdown(
     """
-   The Cancer Genome Atlas (TCGA) is a publicly cancer database curated by the National Cancer Institute 
+   The Cancer Genome Atlas (TCGA) is a public cancer database curated by the National Cancer Institute 
    and contains molecular data (including genomic, epigenomic, transcriptomic, and proteomic data) 
    of more than 20,000 primary cancer samples from patients and corresponding normal tissue samples 
    of 33 types of cancer. While the extensive scale of TCGA entails its popularity for cancer 
