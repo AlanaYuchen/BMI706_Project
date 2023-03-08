@@ -42,8 +42,8 @@ st.markdown(
  
 st.markdown(
     """   
-    **For resource code and further information, please follow up on Github: https://github.com/AlanaYuchen/BMI706_Project**
-    **Do not hesitate to contact the team if you have any questions or comments!**
+    **For resource code and further information, please follow up on Github: https://github.com/AlanaYuchen/BMI706_Project**  
+    **Do not hesitate to contact the team if you have any questions or comments!**  
     **Email us at Ye Jin (ye_jin@hms.harvard.edu), Yuchen Cheng (yuchen_cheng@hms.harvard.edu), Jesslyn Goh (jgoh@hms.harvard.edu)!**
 """
 )
