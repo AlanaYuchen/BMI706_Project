@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import streamlit as st
+import re
 
 # set up page sidebar
 st.set_page_config(page_title="Explore a Specific Cancer", page_icon="📈")
@@ -42,22 +43,38 @@ def load_data():
 full_df = load_data()
 
 # record stages in full_df 
-full_df[full_df['stage'] == "Stage 1"] = "Stage I"
-full_df[full_df['stage'] == "Stage 2"] = "Stage II"
-full_df[full_df['stage'] == "Stage 3"] = "Stage III"
-full_df[full_df['stage'] == "Stage 4"] = "Stage IV"
+# full_df[full_df['stage'] == "Stage 1"] = "Stage I"
+# full_df[full_df['stage'] == "Stage 2"] = "Stage II"
+# full_df[full_df['stage'] == "Stage 3"] = "Stage III"
+# full_df[full_df['stage'] == "Stage 4"] = "Stage IV"
 
-full_df[full_df['stage'] == "I"] = "Stage I"
-full_df[full_df['stage'] == "II"] = "Stage II"
-full_df[full_df['stage'] == "III"] = "Stage III"
-full_df[full_df['stage'] == "IV"] = "Stage IV"
+# full_df[full_df['stage'] == "I"] = "Stage I"
+# full_df[full_df['stage'] == "II"] = "Stage II"
+# full_df[full_df['stage'] == "III"] = "Stage III"
+# full_df[full_df['stage'] == "IV"] = "Stage IV"
 
-full_df[full_df['stage'] == "Unknown"] = "Not Reported"
-full_df[full_df['stage'] == "Not ReportedNot Reported"] = "Not Reported"
+# full_df[full_df['stage'] == "Unknown"] = "Not Reported"
+# full_df[full_df['stage'] == "Not ReportedNot Reported"] = "Not Reported"
 
-full_df[full_df['stage'] == "Stage IIAStage IIA"] = "Stage IIA"
-full_df[full_df['stage'] == "Stage IIICStage IIIC"] = "Stage IIIC"
-full_df[full_df['stage'] == "Stage IIBStage IIB"] = "Stage IIB"
+# full_df[full_df['stage'] == "Stage IIAStage IIA"] = "Stage IIA"
+# full_df[full_df['stage'] == "Stage IIICStage IIIC"] = "Stage IIIC"
+# full_df[full_df['stage'] == "Stage IIBStage IIB"] = "Stage IIB"
+full_df[full_df['stage'].str.contains("Stage 1.*",regex=True).astype(bool)] = "Stage I"
+full_df[full_df['stage'].str.contains("Stage 2.*",regex=True).astype(bool)] = "Stage II"
+full_df[full_df['stage'].str.contains("Stage 3.*",regex=True).astype(bool)] = "Stage III"
+full_df[full_df['stage'].str.contains("Stage 4.*",regex=True).astype(bool)] = "Stage IV"
+
+full_df[full_df['stage'].str.contains("I.*",regex=True).astype(bool)] = "Stage I"
+full_df[full_df['stage'].str.contains("II.*",regex=True).astype(bool)] = "Stage II"
+full_df[full_df['stage'].str.contains("III.*",regex=True).astype(bool)] = "Stage III"
+full_df[full_df['stage'].str.contains("IV.*",regex=True).astype(bool)] = "Stage IV"
+
+full_df[full_df['stage'] == "Unknown.*"] = "Not Reported"
+full_df[full_df['stage'] == "Not Reported.*"] = "Not Reported"
+
+full_df[full_df['stage'] == "Stage IIA.*"] = "Stage IIA"
+full_df[full_df['stage'] == "Stage IIIC.*"] = "Stage IIIC"
+full_df[full_df['stage'] == "Stage IIB.*"] = "Stage IIB"
 
 st.write("# Explore a Specific Cancer")
 
