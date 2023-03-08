@@ -149,7 +149,7 @@ death_age_distribution = alt.Chart(Q4).mark_boxplot(opacity = 0.8).encode(
     x = alt.X("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
     y = alt.Y("age_of_death:Q",title='Age of death'),
     color = alt.Color("tissue_or_organ_of_origin:N")
-).properties("Distribution of Age of Death")
+).properties(title="Distribution of Age of Death")
 
 v4_both = diagnosis_age_distribution | death_age_distribution
 st.altair_chart(v4_both, use_container_width=True)
