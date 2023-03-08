@@ -59,22 +59,22 @@ full_df = load_data()
 # full_df[full_df['stage'] == "Stage IIAStage IIA"] = "Stage IIA"
 # full_df[full_df['stage'] == "Stage IIICStage IIIC"] = "Stage IIIC"
 # full_df[full_df['stage'] == "Stage IIBStage IIB"] = "Stage IIB"
-full_df[full_df['stage'].str.contains("Stage 1.*",regex=True).astype(bool)] = "Stage I"
-full_df[full_df['stage'].str.contains("Stage 2.*",regex=True).astype(bool)] = "Stage II"
-full_df[full_df['stage'].str.contains("Stage 3.*",regex=True).astype(bool)] = "Stage III"
-full_df[full_df['stage'].str.contains("Stage 4.*",regex=True).astype(bool)] = "Stage IV"
+# full_df[full_df['stage'].str.contains("Stage 1.*",regex=True).astype(bool)] = "Stage I"
+# full_df[full_df['stage'].str.contains("Stage 2.*",regex=True).astype(bool)] = "Stage II"
+# full_df[full_df['stage'].str.contains("Stage 3.*",regex=True).astype(bool)] = "Stage III"
+# full_df[full_df['stage'].str.contains("Stage 4.*",regex=True).astype(bool)] = "Stage IV"
 
-full_df[full_df['stage'].str.contains("I.*",regex=True).astype(bool)] = "Stage I"
-full_df[full_df['stage'].str.contains("II.*",regex=True).astype(bool)] = "Stage II"
-full_df[full_df['stage'].str.contains("III.*",regex=True).astype(bool)] = "Stage III"
-full_df[full_df['stage'].str.contains("IV.*",regex=True).astype(bool)] = "Stage IV"
+# full_df[full_df['stage'].str.contains("I.*",regex=True).astype(bool)] = "Stage I"
+# full_df[full_df['stage'].str.contains("II.*",regex=True).astype(bool)] = "Stage II"
+# full_df[full_df['stage'].str.contains("III.*",regex=True).astype(bool)] = "Stage III"
+# full_df[full_df['stage'].str.contains("IV.*",regex=True).astype(bool)] = "Stage IV"
 
-full_df[full_df['stage'].str.contains("Unknown.*",regex=True).astype(bool)] = "Not Reported"
-full_df[full_df['stage'].str.contains("Not Reported.*",regex=True).astype(bool)] = "Not Reported"
+# full_df[full_df['stage'].str.contains("Unknown.*",regex=True).astype(bool)] = "Not Reported"
+# full_df[full_df['stage'].str.contains("Not Reported.*",regex=True).astype(bool)] = "Not Reported"
 
-full_df[full_df['stage'].str.contains("Stage IIA.*",regex=True).astype(bool)] = "Stage IIA"
-full_df[full_df['stage'].str.contains("Stage IIIC.*",regex=True).astype(bool)] = "Stage IIIC"
-full_df[full_df['stage'].str.contains("Stage IIB.*",regex=True).astype(bool)] = "Stage IIB"
+# full_df[full_df['stage'].str.contains("Stage IIA.*",regex=True).astype(bool)] = "Stage IIA"
+# full_df[full_df['stage'].str.contains("Stage IIIC.*",regex=True).astype(bool)] = "Stage IIIC"
+# full_df[full_df['stage'].str.contains("Stage IIB.*",regex=True).astype(bool)] = "Stage IIB"
 
 st.write("# Explore a Specific Cancer")
 
