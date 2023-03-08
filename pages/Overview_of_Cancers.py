@@ -47,7 +47,6 @@ full_df = load_data()
 alt.data_transformers.enable('default', max_rows=None)
 st.write("# Overview of Cancer Trends")
 # ============================================= Visualization 2 =============================================
-st.write("### Explore Trends in the Number of Diagnosis Across Years")
 
 # add option for users to select a few cancers 
 default_cancers = [
@@ -62,7 +61,7 @@ default_cancers = [
 ]
 cancers = st.multiselect(label = "Select multiple types of cancers to explore:", options = full_df['tissue_or_organ_of_origin'].unique(), default = default_cancers)
 subset = full_df[full_df["tissue_or_organ_of_origin"].isin(cancers)]
-
+st.write("### Explore Trends in the Number of Diagnosis Across Years")
 # select columns of interest and drop NAs
 Q2 = subset[['year_of_diagnosis','primary_diagnosis','case_id', 'tissue_or_organ_of_origin','gender']]
 Q2 = Q2.dropna()
