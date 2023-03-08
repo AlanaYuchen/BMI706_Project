@@ -17,8 +17,8 @@ st.markdown(
    studies, it can also be difficult to navigate this forest of data.  
    """
    )
-st.write("### Feeling lost in the large database?")
-st.write("### Here we come, the Illuminator Team!")  
+st.write("### Feeling lost in the large database? 😔")
+st.write("### Here we come, the Illuminator Team! 😆")  
    
 st.markdown(
     """     
