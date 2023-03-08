@@ -1,5 +1,4 @@
-# BMI706 Visualization Project
-## Welcome to TCGA Explorer! 👋
+# Welcome to TCGA Explorer! 👋
 The Cancer Genome Atlas (TCGA) is a publicly cancer database curated by the National Cancer Institute and contains molecular data (including genomic, epigenomic, transcriptomic, and proteomic data) of more than 20,000 primary cancer samples from patients and corresponding normal tissue samples of 33 types of cancer. While the extensive scale of TCGA entails its popularity for cancer studies, it can also be difficult to navigate this forest of data.  
   
    **We offer an application that overviews clinical and family history data spanning all sequenced samples in TCGA!**  
