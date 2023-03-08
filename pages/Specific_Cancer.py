@@ -64,7 +64,7 @@ st.write("# Explore a Specific Cancer")
 
 # ============================================= Visualization 6 =============================================
 #subset one cancer type of user's choice
-cancer = st.selectbox(label = "Cancer", options = full_df['tissue_or_organ_of_origin'].unique())
+cancer = st.selectbox(label = "Cancer", options = full_df['tissue_or_organ_of_origin'].unique(), index = 7)
 subset = full_df[full_df["tissue_or_organ_of_origin"] == cancer]
 Q6 = subset[['stage', 'ethnicity', 'gender', 'age_at_diagnosis']]
 Q6['age_at_diagnosis_year'] = pd.to_numeric(Q6['age_at_diagnosis'])/365
