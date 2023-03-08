@@ -60,23 +60,6 @@ full_df.loc[full_df['stage'] == "Stage IIAStage IIA", "stage"] = "Stage IIA"
 full_df.loc[full_df['stage'] == "Stage IIICStage IIIC", "stage"] = "Stage IIIC"
 full_df.loc[full_df['stage'] == "Stage IIBStage IIB", "stage"] = "Stage IIB"
 
-# full_df.loc[full_df['stage'].str.contains("Stage 1.*",regex=True).astype(bool), "stage"] = "Stage I"
-# full_df.loc[full_df['stage'].str.contains("Stage 2.*",regex=True).astype(bool),  "stage"] = "Stage II"
-# full_df.loc[full_df['stage'].str.contains("Stage 3.*",regex=True).astype(bool),  "stage"] = "Stage III"
-# full_df.loc[full_df['stage'].str.contains("Stage 4.*",regex=True).astype(bool),  "stage"] = "Stage IV"
-
-# full_df.loc[full_df['stage'].str.contains("I.*",regex=True).astype(bool),  "stage"] = "Stage I"
-# full_df.loc[full_df['stage'].str.contains("II.*",regex=True).astype(bool),  "stage"] = "Stage II"
-# full_df.loc[full_df['stage'].str.contains("III.*",regex=True).astype(bool),  "stage"] = "Stage III"
-# full_df.loc[full_df['stage'].str.contains("IV.*",regex=True).astype(bool),  "stage"] = "Stage IV"
-
-# full_df.loc[full_df['stage'].str.contains("Unknown.*",regex=True).astype(bool),  "stage"] = "Not Reported"
-# full_df.loc[full_df['stage'].str.contains("Not Reported.*",regex=True).astype(bool),  "stage"] = "Not Reported"
-
-# full_df.loc[full_df['stage'].str.contains("Stage IIA.*",regex=True).astype(bool),  "stage"] = "Stage IIA"
-# full_df.loc[full_df['stage'].str.contains("Stage IIIC.*",regex=True).astype(bool),  "stage"] = "Stage IIIC"
-# full_df.loc[full_df['stage'].str.contains("Stage IIB.*",regex=True).astype(bool),  "stage"] = "Stage IIB"
-
 st.write("# Explore a Specific Cancer")
 
 # ============================================= Visualization 6 =============================================
@@ -104,6 +87,7 @@ Q6 = Q6.dropna()
 
 # ========= gender =========
 st.write("### Explore Cancer Stage and Age of Diagnosis Across Gender")
+st.write("Click on a specific cancer stage to explore its age of diagnosis on the right")
 # add selector 
 select_stage_gender = alt.selection_single(encodings=["x"])
 
