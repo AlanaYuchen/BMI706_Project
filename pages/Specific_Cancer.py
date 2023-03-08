@@ -102,7 +102,7 @@ cancerstage_gender = base.mark_bar().encode(
 ).add_selection(
     select_stage_gender
 ).properties(
-  title = "Number of diagnosis per cancer stage colored by gender"
+  title = "Number of diagnosis per stage for " + cancer + " colored by gender"
 )
 
 # diagnosisage_gender = base.mark_bar().encode(
@@ -123,7 +123,7 @@ diagnosisage_gender = base.mark_bar().encode(
 ).transform_filter(
     select_stage_gender
 ).properties(
-  title = "Number of diagnosis per age group colored by gender"
+  title = "Histogram of diagnosis per age for " + cancer + " colored by gender"
 )
 
 both_plots = cancerstage_gender | diagnosisage_gender
@@ -145,7 +145,7 @@ cancerstage_ethnicity = base.mark_bar().encode(
 ).add_selection(
     select_stage_ethnicity
 ).properties(
-  title = "Number of diagnosis per cancer stage colored by ethnicity"
+  title = "Number of diagnosis per stage for " + cancer + " colored by ethnicity"
 )
 
 diagnosisage_ethnicity = base.mark_bar(opacity = 0.8).encode(
@@ -156,7 +156,7 @@ diagnosisage_ethnicity = base.mark_bar(opacity = 0.8).encode(
 ).transform_filter(
     select_stage_ethnicity
 ).properties(
-  title = "Number of diagnosis per age group colored by ethnicity"
+  title = "Histogram of diagnosis per age for " + cancer + " colored by ethnicity"
 )
 
 both_plots_ethnicity = cancerstage_ethnicity | diagnosisage_ethnicity
