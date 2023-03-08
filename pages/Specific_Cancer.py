@@ -105,18 +105,8 @@ cancerstage_gender = base.mark_bar().encode(
   title = "Number of diagnosis per stage for " + cancer + " colored by gender"
 )
 
-# diagnosisage_gender = base.mark_bar().encode(
-#   x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360),title='Age group'), 
-#   y = alt.Y(aggregate = "count",title='Count'),
-#   color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['female','male','unknown'], range=["hotpink", "#1E90FF","grey"])), 
-#   tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')]
-# ).transform_filter(
-#     select_stage_gender
-# ).properties(
-#   title = "Number of diagnosis per age group colored by gender"
-# )
 diagnosisage_gender = base.mark_bar().encode(
-  x = alt.X("age_at_diagnosis_year:Q", axis=alt.Axis(labelAngle=360),title='Age group', bin = alt.Bin(step=5)), 
+  x = alt.X("age_at_diagnosis_year:Q", axis=alt.Axis(labelAngle=360),title='Age at diagnosis', bin = alt.Bin(step=5)), 
   y = alt.Y(aggregate = "count",title='Count'),
   color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['female','male','unknown'], range=["hotpink", "#1E90FF","grey"])), 
   tooltip = [alt.Tooltip("age_at_diagnosis_year",title='Age at diagnosis'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')]
@@ -149,10 +139,10 @@ cancerstage_ethnicity = base.mark_bar().encode(
 )
 
 diagnosisage_ethnicity = base.mark_bar(opacity = 0.8).encode(
-  x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360),title='Age group'), 
+  x = alt.X("age_group:O", axis=alt.Axis(labelAngle=360),title='Age at diagnosis', bin = alt.Bin(step=5)), 
   y = alt.Y(aggregate = "count",title='Count'),
   color = alt.Color('ethnicity',title='Ethnicity'), 
-  tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("ethnicity",title='Ethnicity'), alt.Tooltip("count()",title='Count')]
+  tooltip = [alt.Tooltip("age_group",title='Age at diagnosis'),alt.Tooltip("ethnicity",title='Ethnicity'), alt.Tooltip("count()",title='Count')]
 ).transform_filter(
     select_stage_ethnicity
 ).properties(

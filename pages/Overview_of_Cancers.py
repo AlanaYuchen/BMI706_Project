@@ -78,7 +78,7 @@ st.altair_chart(num_diagnosis_cancer_year, use_container_width=True)
 
 # bar chart 
 num_diagnosis_cancer = alt.Chart(Q2).mark_bar().encode(
-  x = alt.X("tissue_or_organ_of_origin:N", sort='-y',title='Site of canceer origin'), 
+  x = alt.X("tissue_or_organ_of_origin:N", sort='-y',title='Site of cancer origin'), 
   y = alt.Y(aggregate = "count",title='Count of records'),
   color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['female','male','unknown'], range=["hotpink", "#1E90FF","grey"])), 
   tooltip = [alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count(tissue_or_organ_of_origin)",title='Count of records')]
