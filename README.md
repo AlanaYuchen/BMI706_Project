@@ -13,7 +13,7 @@ The Cancer Genome Atlas (TCGA) is a publicly cancer database curated by the Nati
       
  The data we used is publicly available at GDC data portal:  https://portal.gdc.cancer.gov/repository.
  
- **Click here to access our App!**
+ **Click here to access our App! https://alanayuchen-bmi706-project-hello-ponqn0.streamlit.app/**
     
  **Do not hesitate to contact the team if you have any questions or comments!**
  **Email us at Jesslyn Ting Yu Goh (jgoh@hms.harvard.edu), Ye Jin (ye_jin@hms.harvard.edu), Yuchen Cheng (yuchen_cheng@hms.harvard.edu)!**
