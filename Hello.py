@@ -42,6 +42,6 @@ st.markdown(
 st.markdown(
     """   
     **Do not hesitate to contact the team if you have any questions or comments!**
-    **Email us at XXXX@hms.harvard.edu!**
+    **Email us at Ye Jin (ye_jin@hms.harvard.edu), Yuchen Cheng (yuchen_cheng@hms.harvard.edu), Jesslyn Goh (jgoh@hms.harvard.edu)!**
 """
 )
