@@ -14,11 +14,10 @@ st.markdown(
    and contains molecular data (including genomic, epigenomic, transcriptomic, and proteomic data) 
    of more than 20,000 primary cancer samples from patients and corresponding normal tissue samples 
    of 33 types of cancer. While the extensive scale of TCGA entails its popularity for cancer 
-   studies, it can also be difficult to navigate this forest of data. 
-   Feeling lost in the large database?  
+   studies, it can also be difficult to navigate this forest of data.  
    """
    )
-
+st.write("### Feeling lost in the large database?")
 st.write("### Here we come, the Illuminator Team!")  
    
 st.markdown(
