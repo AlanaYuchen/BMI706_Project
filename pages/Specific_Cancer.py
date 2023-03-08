@@ -87,7 +87,7 @@ Q6 = Q6.dropna()
 
 # ========= gender =========
 st.write("### Explore Cancer Stage and Age of Diagnosis Across Gender")
-st.write("Click on a specific cancer stage to explore its age of diagnosis on the right")
+st.write("Click on a specific cancer stage to explore its distribution of age of diagnosis on the right")
 # add selector 
 select_stage_gender = alt.selection_single(encodings=["x"])
 
@@ -101,6 +101,8 @@ cancerstage_gender = base.mark_bar().encode(
   opacity=alt.condition(select_stage_gender, alt.value(1), alt.value(0.2))
 ).add_selection(
     select_stage_gender
+).properties(
+  title = "Number of diagnosis per cancer stage colored by gender"
 )
 
 diagnosisage_gender = base.mark_bar().encode(
@@ -110,6 +112,8 @@ diagnosisage_gender = base.mark_bar().encode(
   tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count()",title='Count')]
 ).transform_filter(
     select_stage_gender
+).properties(
+  title = "Number of diagnosis per age group colored by gender"
 )
 
 both_plots = cancerstage_gender | diagnosisage_gender
@@ -117,6 +121,7 @@ st.altair_chart(both_plots, use_container_width=True)
 
 # ========= ethnicity =========
 st.write("### Explore Cancer Stage and Age of Diagnosis Across Ethnicities")
+st.write("Click on a specific cancer stage to explore its distribution of age of diagnosis on the right")
 # add selector 
 select_stage_ethnicity = alt.selection_single(encodings=["x"])
 
@@ -129,6 +134,8 @@ cancerstage_ethnicity = base.mark_bar().encode(
   opacity=alt.condition(select_stage_ethnicity, alt.value(1), alt.value(0.2))
 ).add_selection(
     select_stage_ethnicity
+).properties(
+  title = "Number of diagnosis per cancer stage colored by ethnicity"
 )
 
 diagnosisage_ethnicity = base.mark_bar(opacity = 0.8).encode(
@@ -138,6 +145,8 @@ diagnosisage_ethnicity = base.mark_bar(opacity = 0.8).encode(
   tooltip = [alt.Tooltip("age_group",title='Age group'),alt.Tooltip("ethnicity",title='Ethnicity'), alt.Tooltip("count()",title='Count')]
 ).transform_filter(
     select_stage_ethnicity
+).properties(
+  title = "Number of diagnosis per age group colored by ethnicity"
 )
 
 both_plots_ethnicity = cancerstage_ethnicity | diagnosisage_ethnicity
