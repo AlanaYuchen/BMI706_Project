@@ -94,7 +94,7 @@ Q3['age_at_diagnosis_year'] = pd.to_numeric(Q3['age_at_diagnosis'])/365
 Q3 = Q3.dropna()
 
 # add selector 
-single = alt.selection_single(encodings=["color"],bind=['x', 'legend'])
+single = alt.selection_single(encodings=["x","color"],bind='legend')
 
 # line chart
 base = alt.Chart(Q3)
