@@ -12,8 +12,8 @@ st.sidebar.header("Overview of All Cancers")
 
 @st.cache_data
 def load_data():
-  clinical_df = pd.read_csv("clinical.tsv", delimiter = "\t")
-  family_df = pd.read_csv("family_history.tsv", delimiter = "\t")
+  clinical_df = pd.read_csv("data/clinical.tsv", delimiter = "\t")
+  family_df = pd.read_csv("data/family_history.tsv", delimiter = "\t")
 
   # ================ clean clinical_df data ===============
   # replace '-- with empty space and collapse columns with cancer stage to one
