@@ -60,7 +60,7 @@ default_cancers = [
     "Prostate gland",
     "Testis, NOS"
 ]
-cancers = st.multiselect(label = "Cancers", options = full_df['tissue_or_organ_of_origin'].unique(), default = default_cancers)
+cancers = st.multiselect(label = "Select multiple types of cancers to explore:", options = full_df['tissue_or_organ_of_origin'].unique(), default = default_cancers)
 subset = full_df[full_df["tissue_or_organ_of_origin"].isin(cancers)]
 
 # select columns of interest and drop NAs
@@ -70,10 +70,10 @@ Q2 = Q2.dropna()
 # line chart
 num_diagnosis_cancer_year = alt.Chart(Q2).mark_line(point=alt.OverlayMarkDef()).encode(
   x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'), 
-  y = alt.Y(aggregate = "count",title='Count of records'), 
+  y = alt.Y(aggregate = "count",title='Number of Diagnosis'), 
   color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
   tooltip = [alt.Tooltip("tissue_or_organ_of_origin",title='Tissue or organ of origin'),alt.Tooltip("year_of_diagnosis:O",title='Year of diagnosis'), alt.Tooltip("count(year_of_diagnosis)",title='Count')]
-).properties(width = 800, height = 400)
+).properties(width = 800, height = 400,title='Number of Diagnosis Across Years')
 st.altair_chart(num_diagnosis_cancer_year, use_container_width=True)
 
 # bar chart 
@@ -82,11 +82,12 @@ num_diagnosis_cancer = alt.Chart(Q2).mark_bar().encode(
   y = alt.Y(aggregate = "count",title='Count of records'),
   color = alt.Color('gender',title='Gender',scale = alt.Scale(domain=['female','male','unknown'], range=["hotpink", "#1E90FF","grey"])), 
   tooltip = [alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin'),alt.Tooltip("gender",title='Gender'), alt.Tooltip("count(tissue_or_organ_of_origin)",title='Count of records')]
-).properties(width = 800, height = 400)
+).properties(width = 800, height = 400, title='Gender Composition of Selected Cancers')
 st.altair_chart(num_diagnosis_cancer, use_container_width=True)
 
 # ============================================= Visualization 3 =============================================
 st.write("### Explore Trends in Age of Cancer Diagnosis Throughout the Years")
+st.write('Click on a specific type of cancer and view the distribution of age at diagnosis for individual patients!')
 ## Part 1 & part 2
 Q3 = subset[['year_of_diagnosis','age_at_diagnosis','tissue_or_organ_of_origin','gender']]
 Q3['age_at_diagnosis_year'] = pd.to_numeric(Q3['age_at_diagnosis'])/365
@@ -99,13 +100,13 @@ single = alt.selection_single(encodings=["color"],bind='legend')
 base = alt.Chart(Q3)
 num_diagnosis_age_cancer = base.mark_line(point=alt.OverlayMarkDef()).encode(
   x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'), 
-  y = alt.Y("age_at_diagnosis_year:Q", aggregate = "mean",title='Age at diagnosis'), 
+  y = alt.Y("age_at_diagnosis_year:Q", aggregate = "mean",title='Mean age at diagnosis'), 
   color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
   tooltip = [alt.Tooltip("year_of_diagnosis",title='Year of diagnosis'),alt.Tooltip("mean(age_at_diagnosis_year)",title='Age at diagnosis'),alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin')],
   opacity=alt.condition(single, alt.value(1), alt.value(0.2))
 ).add_selection(
     single
-)
+).properties(titlee='Mean Age at Cancer Diagnosis across Years')
 
 num_diagnosis_age_cancer2 = base.mark_boxplot().encode(
     x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'),
@@ -121,7 +122,6 @@ num_diagnosis_age_cancer & num_diagnosis_age_cancer2
 
 # ============================================= Visualization 4 =============================================
 st.write("### Explore Associations in Age of Diagnosis with Age of Death")
-st.write('Click on a specific type of cancer and view the distribution of age at diagnosis for individual patients!')
 ## Part 1
 # scatter plot between average age of death and diagnosis for each cancer type
 Q4 = subset[['year_of_diagnosis','age_at_diagnosis','tissue_or_organ_of_origin','year_of_death', 'year_of_birth']]
@@ -131,8 +131,8 @@ Q4 = Q4.dropna()
 
 # line chart
 diagnosis_death_age = alt.Chart(Q4).mark_circle(size=60, opacity = 0.7).encode(
-  y = alt.Y("age_of_death:Q", aggregate = "mean",title='Age of death'), 
-  x = alt.X("age_at_diagnosis_year:Q", aggregate = "mean",title='Age at diagnosis'), 
+  y = alt.Y("age_of_death:Q", aggregate = "mean",title='Mean age of death'), 
+  x = alt.X("age_at_diagnosis_year:Q", aggregate = "mean",title='Mean age at diagnosis'), 
   color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
   tooltip = [alt.Tooltip("mean(age_of_death)",title='Mean age of death'),alt.Tooltip("mean(age_at_diagnosis_year)",title='Mean age at diagnosis'),alt.Tooltip("tissue_or_organ_of_origin",title='Site of cancer origin')]
 )
@@ -144,12 +144,12 @@ diagnosis_age_distribution = alt.Chart(Q4).mark_boxplot(opacity = 0.8).encode(
     x = alt.X("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
     y = alt.Y("age_at_diagnosis_year:Q",title='Age at diagnosis'),
     color = alt.Color("tissue_or_organ_of_origin:N",title='Site of cancer origin')
-)
+).properties(title='Distrbution of Age at Diagnosis')
 death_age_distribution = alt.Chart(Q4).mark_boxplot(opacity = 0.8).encode(
     x = alt.X("tissue_or_organ_of_origin:N",title='Site of cancer origin'),
     y = alt.Y("age_of_death:Q",title='Age of death'),
     color = alt.Color("tissue_or_organ_of_origin:N")
-)
+).properties("Distribution of Age of Death")
 
 v4_both = diagnosis_age_distribution | death_age_distribution
 st.altair_chart(v4_both, use_container_width=True)
@@ -167,6 +167,7 @@ Q1 = Q1.dropna()
 
 # === bar chart 1: number of cases per cancer type with relatives who also have a history of cancer ===
 st.write("### Explore Trends in Family History")
+st.write("Click on the bar of a cancer to view its relative cancer information.")
 # add selector 
 select_cancer = alt.selection_single(encodings=["x"])
 
@@ -185,7 +186,7 @@ num_relatives_cancer = num_relatives_cancer_base.mark_bar().encode(
 num_relatives_cancer2 = num_relatives_cancer_base.mark_bar().encode(
     x = alt.X("relationship_primary_diagnosis:N", sort = '-y',title='Relationship with the primary diagnosed patient'),
     y = alt.Y(aggregate = "count", scale = alt.Scale(type = "log"),title='Count of reecords'),
-    color = alt.Color("relationship_type",title='Relationship type'),
+    color = alt.Color("relationship_type",title='Relationship type',scale=alt.Scale(scheme="tableau20")),
     tooltip = [alt.Tooltip("relationship_primary_diagnosis",title='Relationship with the primary diagnosed patient'), alt.Tooltip("relationship_type",title='Relationship type'),alt.Tooltip("count(relationship_type)",title='Count of reecords')]
 ).transform_filter(
     select_cancer
@@ -194,4 +195,4 @@ num_relatives_cancer2 = num_relatives_cancer_base.mark_bar().encode(
 both_charts = num_relatives_cancer | num_relatives_cancer2
 both_charts = both_charts.resolve_scale(color='independent')
 st.altair_chart(both_charts, use_container_width=True)
-
+st.write("* Note that the family history data of some cancers might be missing.")
