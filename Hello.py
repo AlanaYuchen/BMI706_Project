@@ -33,7 +33,8 @@ st.markdown(
       - Explore and compare the overall information across multiple cancer types.
       - Zoom in to explore the data composition of a specific cancer type.
       
-    The data we used is publicly available at GDC data portal: https://portal.gdc.cancer.gov/repository.
+    The data we used is publicly available at GDC data portal: https://portal.gdc.cancer.gov/repository.  
+      
     The sample collection criteria can be found at: https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/studied-cancers
 
 """
