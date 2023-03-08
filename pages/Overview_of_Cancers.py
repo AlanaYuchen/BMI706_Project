@@ -106,7 +106,7 @@ num_diagnosis_age_cancer = base.mark_line(point=alt.OverlayMarkDef()).encode(
   opacity=alt.condition(single, alt.value(1), alt.value(0.2))
 ).add_selection(
     single
-).properties(titlee='Mean Age at Cancer Diagnosis across Years')
+).properties(title='Mean Age at Cancer Diagnosis across Years')
 
 num_diagnosis_age_cancer2 = base.mark_boxplot().encode(
     x = alt.X("year_of_diagnosis:O",title='Year of diagnosis'),
@@ -115,7 +115,7 @@ num_diagnosis_age_cancer2 = base.mark_boxplot().encode(
 ).transform_filter(
     single
 ).properties(
-    title="The distribution of age at diagnosis across years in selected cancer",
+    title="The distribution of age at diagnosis across years in selected cancer"
 )
 num_diagnosis_age_cancer & num_diagnosis_age_cancer2
 
