@@ -188,7 +188,7 @@ num_relatives_cancer2 = num_relatives_cancer_base.mark_bar().encode(
     x = alt.X("relationship_primary_diagnosis:N", sort = '-y',title='Relationship with the primary diagnosed patient'),
     y = alt.Y(aggregate = "count", scale = alt.Scale(type = "log"),title='Number of relatives (log scale)'),
     color = alt.Color("relationship_type",title='Relationship type',scale=alt.Scale(scheme="category20",domain=relation,clamp=True)),
-    tooltip = [alt.Tooltip("relationship_primary_diagnosis",title='Relationship with the primary diagnosed patient'), alt.Tooltip("relationship_type",title='Relationship type'),alt.Tooltip("count(relationship_type)",title='Count of reecords')]
+    tooltip = [alt.Tooltip("relationship_primary_diagnosis",title='Relationship with the primary diagnosed patient'), alt.Tooltip("relationship_type",title='Relationship type'),alt.Tooltip("count(relationship_type)",title='Count of records')]
 ).transform_filter(
     select_cancer
 )
