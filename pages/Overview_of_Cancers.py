@@ -86,7 +86,7 @@ st.altair_chart(num_diagnosis_cancer, use_container_width=True)
 
 # ============================================= Visualization 3 =============================================
 st.write("### Explore Trends in Age of Cancer Diagnosis Throughout the Years")
-st.write('Click on a specific type of cancer and view the distribution of age at diagnosis for individual patients!')
+st.write('Click on the legend to choose a specific type of cancer and view the distribution of age at diagnosis for individual patients!')
 ## Part 1 & part 2
 Q3 = subset[['year_of_diagnosis','age_at_diagnosis','tissue_or_organ_of_origin','gender']]
 Q3['age_at_diagnosis_year'] = pd.to_numeric(Q3['age_at_diagnosis'])/365
